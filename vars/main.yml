@@ -1,0 +1,6 @@
+---
+# vars file for ansible-role-ghidra
+
+ghidra_dep_packages:
+  - openjdk-11-jdk
+  - unzip
