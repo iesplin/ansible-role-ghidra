@@ -32,7 +32,7 @@
         regex_replace('application.version=([0-9.]+(-\\w+)?)', '\\1') }}"
   when: ghidra_properties_file.stat.exists
 
-- name: Get archive version
+- name: Infer version from Ghidra archive file
   set_fact:
     ghidra_version: "{{ ghidra_archive_url |
         regex_replace('.*ghidra_([0-9.]+(-\\w+)?)_\\w+_[0-9]{8}\\.zip', '\\1') }}"
@@ -60,7 +60,6 @@
     file:
       path: "{{ temp_dir.path }}"
       state: absent
-
   when: installed_version is not defined or installed_version != ghidra_version
 
 - name: Create desktop file
